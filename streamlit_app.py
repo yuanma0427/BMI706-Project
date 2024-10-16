@@ -24,13 +24,13 @@ df = load_data()
 st.write("# Visualizations for Cardiovascular Diseases Mortality")
 
 # Sidebar for navigation
-page = st.sidebar.radio("Select a Page", ["Plots 1-4", "Plot 5"])
+page = st.sidebar.radio("Select a Page", ["Page 1: For countries in regional context", "Page 2: For arbitrary countries"])
 
 # Page 1: Plots 1-4
-if page == "Plots 1-4":
+if page == "Page 1: For countries in regional context":
 
 ## plot 1
-    st.write("## Plot1: World Map of cardiovascular disease mortality")
+    st.write("## Plot 1: World map overview of cardiovascular disease mortality")
     # Aggregate data to get sums of total deaths per country, per year
     df2 = df.groupby(["Country", "Year", "country-code"]).agg(
         total_deaths=('Number', 'sum'),
@@ -38,6 +38,7 @@ if page == "Plots 1-4":
     ).reset_index()
 
 
+    st.sidebar.header("Controls")
     # Streamlit widget for selecting a single year
     year = st.sidebar.slider(
         'Select Year', 
@@ -108,7 +109,6 @@ if page == "Plots 1-4":
         'Number': 'sum', 
     }).reset_index()
 
-    st.sidebar.header("Controls")
     available_regions = df2['Region Name'].unique().tolist()
     selected_region = st.sidebar.selectbox('Select Region', sorted(available_regions))
 
@@ -218,9 +218,10 @@ if page == "Plots 1-4":
 
 
 ## Page 2: Plot 5
-elif page == "Plot 5":
+elif page == "Page 2: For arbitrary countries":
     st.write("## Comparison of Mortality Among Different Countries")
-
+    
+    st.sidebar.header("Controls")
     year_for_comparison = st.sidebar.slider(
         'Select Year for Comparison',
         int(df['Year'].min()),
