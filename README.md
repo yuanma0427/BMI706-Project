@@ -6,3 +6,4 @@ Requirements:
 - [streamlit](https://docs.streamlit.io/get-started/installation)
 - [altair](https://altair-viz.github.io/getting_started/installation.html)
 - [pandas](https://pandas.pydata.org/docs/getting_started/install.html)
+- [vega_datasets](https://anaconda.org/conda-forge/vega_datasets)
